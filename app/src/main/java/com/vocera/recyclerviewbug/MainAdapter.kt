@@ -7,6 +7,10 @@ import android.view.ViewGroup
 
 class MainAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
+    init {
+        setHasStableIds(true)
+    }
+
     private var model: List<MainModel> = emptyList()
 
     fun updateModel(newModel: List<MainModel>) {
@@ -38,5 +42,9 @@ class MainAdapter: RecyclerView.Adapter<MainViewHolder>() {
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         holder.textView.text = "Item ${model[position].number}"
+    }
+
+    override fun getItemId(position: Int): Long {
+        return this.model[position].id.toLong()
     }
 }
